@@ -12,29 +12,28 @@ ACCESS_CODE = st.secrets["general"]["access_code"]
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
-if "show_loading" not in st.session_state:
-    st.session_state.show_loading = False
+if "loading_done" not in st.session_state:
+    st.session_state.loading_done = False
 
 # -------- Authentification --------
-if not st.session_state.authenticated and not st.session_state.show_loading:
+if not st.session_state.authenticated:
     st.title("🔐 Accès au site privé")
     code_input = st.text_input("Entrez le code d’accès reçu par mail :", type="password")
     if code_input == ACCESS_CODE:
         st.session_state.authenticated = True
-        st.session_state.show_loading = True
         st.experimental_rerun()
     elif code_input:
         st.error("Code incorrect. Veuillez réessayer.")
     st.stop()
 
-# -------- Animation de transition --------
-if st.session_state.show_loading:
+# -------- Animation après authentification --------
+if st.session_state.authenticated and not st.session_state.loading_done:
     st.success("Accès autorisé. Bienvenue !")
     st.balloons()
     st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
     time.sleep(2)
-    st.session_state.show_loading = False
+    st.session_state.loading_done = True
     st.experimental_rerun()
 
 # -------- Contenu principal --------
