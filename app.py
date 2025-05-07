@@ -49,7 +49,7 @@ if st.session_state.authenticated:
 
     # -------- Formulaire RSVP --------
     st.subheader("Confirmez votre présence")
-    components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScg66JhQYc7td2CyL8EP_j5eIjrCTJYJZo46Jlo7qYqNK7GPw/viewform?embedded=true" , height="600")
+    components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScg66JhQYc7td2CyL8EP_j5eIjrCTJYJZo46Jlo7qYqNK7GPw/viewform?embedded=true" , height="500")
 
     # -------- Galerie --------
     st.subheader("Souvenirs & moments partagés")
