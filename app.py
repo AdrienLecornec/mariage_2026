@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import datetime
-import os
+import time
 
 # Configuration de la page
 st.set_page_config(page_title="Notre Mariage Hakima", page_icon=":heart:", layout="centered")
@@ -20,7 +20,7 @@ if not st.session_state.authenticated:
         st.balloons()
         st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
         st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
-        st.sleep(2)
+        time.sleep(2)
     else:
         if code_input:
             st.error("Code incorrect. Veuillez réessayer.")
