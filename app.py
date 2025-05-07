@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime
 import time
+import streamlit.components.v1 as components
 
 # Configuration de la page
 st.set_page_config(page_title="Notre Mariage Hakima", page_icon=":heart:", layout="centered")
@@ -48,18 +49,7 @@ if st.session_state.authenticated:
 
     # -------- Formulaire RSVP --------
     st.subheader("Confirmez votre présence")
-    with st.form("rsvp_form"):
-        name = st.text_input("Votre nom")
-        email = st.text_input("Adresse e-mail")
-        coming = st.radio("Serez-vous présent ?", ["Oui", "Non"])
-        guests = st.number_input("Combien d'accompagnants ?", 0, 5, step=1)
-        message = st.text_area("Un petit mot pour nous ?")
-
-        submitted = st.form_submit_button("Envoyer")
-        if submitted:
-            with open("fichier_reponse.csv", "a", encoding="utf-8") as f:
-                f.write(f"{name},{email},{coming},{guests},{message}\n")
-            st.success("Merci pour votre réponse ! 💌")
+    components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScg66JhQYc7td2CyL8EP_j5eIjrCTJYJZo46Jlo7qYqNK7GPw/viewform?embedded=true"  height="600")
 
     # -------- Galerie --------
     st.subheader("Souvenirs & moments partagés")
