@@ -11,8 +11,8 @@ ACCESS_CODE = st.secrets["general"]["access_code"]
 # Initialisation des états
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
-if "loading_done" not in st.session_state:
-    st.session_state.loading_done = False
+# if "loading_done" not in st.session_state:
+#     st.session_state.loading_done = False
 
 # -------- Authentification --------
 if not st.session_state.authenticated:
@@ -25,14 +25,14 @@ if not st.session_state.authenticated:
     st.stop()
 
 # -------- Animation de transition --------
-if not st.session_state.loading_done:
-    st.success("Accès autorisé. Bienvenue !")
-    st.balloons()
-    st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
-    st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
-    time.sleep(2)
-    st.session_state.loading_done = True
-    st.stop()
+# if not st.session_state.loading_done:
+#     st.success("Accès autorisé. Bienvenue !")
+#     st.balloons()
+#     st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
+#     st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
+#     time.sleep(2)
+#     # st.session_state.loading_done = True
+#     st.stop()
 
 # -------- Page principale --------
 st.title("Hakima et Adrien")
