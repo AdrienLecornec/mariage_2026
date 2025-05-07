@@ -25,15 +25,13 @@ if not st.session_state.authenticated:
 
 # -------- Page principale --------
 if st.session_state.authenticated:
-    st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
-    st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
+ 
     time.sleep(2)
     with st.empty():
-        for seconds in range(10):
-            st.write(f"⏳ {seconds} seconds have passed")
-            time.sleep(1)
-        st.write(":material/check: 10 seconds over!")
-    st.button("Rerun")
+            st.balloons
+            st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
+            st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
+            time.sleep(2)
 
     st.title("Hakima et Adrien")
     st.header("On se marie !")
