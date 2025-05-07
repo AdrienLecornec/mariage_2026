@@ -26,15 +26,7 @@ if not st.session_state.authenticated:
 # -------- Page principale --------
 if st.session_state.authenticated:
  
-    # with st.empty():
-    #         st.balloons
-    #         st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
-    #         st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
-    #         time.sleep(2)
-    loading_msg = st.empty()
-    loading_msg.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
-    time.sleep(2)
-    loading_msg.empty()
+    st.balloons()
 
     st.title("Hakima et Adrien")
     st.header("On se marie !")
