@@ -24,7 +24,7 @@ if not st.session_state.authenticated:
     )
     if st.session_state.code_input == ACCESS_CODE:
         st.session_state.authenticated = True
-        st.experimental_set_query_params(loaded="1")  # Astuce pour forcer un refresh naturel
+        st.query_params(loaded="1")  # Astuce pour forcer un refresh naturel
     elif st.session_state.code_input:
         st.error("Code incorrect. Veuillez réessayer.")
     st.stop()
