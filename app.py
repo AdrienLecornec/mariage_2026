@@ -22,7 +22,7 @@ if not st.session_state.authenticated:
         st.session_state.authenticated = True
     elif code_input:
         st.error("Code incorrect. Veuillez réessayer.")
-    st.stop()
+        st.stop()
 
 # -------- Animation de transition --------
 # if not st.session_state.loading_done:
