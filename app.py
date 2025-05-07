@@ -5,36 +5,39 @@ import time
 # Configuration de la page
 st.set_page_config(page_title="Notre Mariage Hakima", page_icon=":heart:", layout="centered")
 
-# Code d’accès depuis les secrets Streamlit
+# Récupération du code depuis les secrets
 ACCESS_CODE = st.secrets["general"]["access_code"]
 
 # Initialisation des états
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
-
-if "loading_done" not in st.session_state:
-    st.session_state.loading_done = False
+if "loading_shown" not in st.session_state:
+    st.session_state.loading_shown = False
+if "code_input" not in st.session_state:
+    st.session_state.code_input = ""
 
 # -------- Authentification --------
 if not st.session_state.authenticated:
     st.title("🔐 Accès au site privé")
-    code_input = st.text_input("Entrez le code d’accès reçu par mail :", type="password")
-    if code_input == ACCESS_CODE:
+    st.session_state.code_input = st.text_input(
+        "Entrez le code d’accès reçu par mail :", type="password"
+    )
+    if st.session_state.code_input == ACCESS_CODE:
         st.session_state.authenticated = True
-        st.experimental_rerun()
-    elif code_input:
+        st.experimental_set_query_params(loaded="1")  # Astuce pour forcer un refresh naturel
+    elif st.session_state.code_input:
         st.error("Code incorrect. Veuillez réessayer.")
     st.stop()
 
-# -------- Animation après authentification --------
-if st.session_state.authenticated and not st.session_state.loading_done:
+# -------- Animation douce au premier accès --------
+if st.session_state.authenticated and not st.session_state.loading_shown:
     st.success("Accès autorisé. Bienvenue !")
     st.balloons()
     st.markdown("<div style='text-align:center;font-size:64px;'>💖</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align:center;font-size:20px;'>Chargement du site...</div>", unsafe_allow_html=True)
     time.sleep(2)
-    st.session_state.loading_done = True
-    st.experimental_rerun()
+    st.session_state.loading_shown = True
+    st.stop()  # Stop ici pour ne pas afficher tout le contenu tout de suite
 
 # -------- Contenu principal --------
 st.title("Hakima et Adrien")
